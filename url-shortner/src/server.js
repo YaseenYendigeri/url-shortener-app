@@ -5,16 +5,28 @@ import getMorganMiddleware from "#src/middlewares/requestLogger";
 import router from "#src/routes/index";
 import { logger } from "#src/utils/logger";
 import express from "express";
+import session from "express-session";
+import passport from "#src/config/passport";
 
 const createServer = async () => {
   const app = express();
 
   configureMiddlewares(app);
   app.use(getMorganMiddleware());
-
   app.use(router);
-
   setupProcessHandlers();
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET || "your-secret-key",
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   return app;
 };
