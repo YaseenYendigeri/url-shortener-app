@@ -1,27 +1,32 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import db from "#src/config/db";
-const User = db.USER;
+import {
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+  CALLBACK_URL,
+} from "#src/config/env";
+import db from "#src/models/index";
+const User = db.User;
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.CALLBACK_URL,
+      clientID: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET,
+      callbackURL: CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user = await User.findOne({
           where: {
-            googleId: profile.id,
+            google_id: profile.id,
             status: "Active",
             email: profile.emails[0].value,
           },
         });
         if (!user) {
           user = await User.create({
-            googleId: profile.id,
+            google_id: profile.id,
             email: profile.emails[0].value,
             name: profile.displayName,
             status: "Active",

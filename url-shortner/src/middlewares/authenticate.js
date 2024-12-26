@@ -1,40 +1,28 @@
-import * as authService from "#src/services/services.authentication";
-
-import { verifyToken } from "#src/utils/jwtHelper";
-import { errorResponse } from "#src/utils/response";
-import httpStatus from "http-status-codes";
+import jwt from "jsonwebtoken";
+import { User } from "../config/dbConfig";
+import { JWT_SECRET } from "#src/config/env";
 
 export const authenticate = async (req, res, next) => {
+  const token =
+    req.cookies.auth_token || req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return res
+      .status(403)
+      .json({ message: "Authentication token is required" });
+  }
+
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-      return errorResponse(
-        res,
-        "Authorization token is required.",
-        null,
-        httpStatus.UNAUTHORIZED
-      );
-    }
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const user = await User.findByPk(decoded.id);
 
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return errorResponse(
-        res,
-        "Invalid authorization token.",
-        null,
-        httpStatus.UNAUTHORIZED
-      );
-    }
-
-    const sessionId = decoded.sessionId || null;
-    const user = await authService.findUser({ _id: decoded.userId });
     if (!user) {
-      return errorResponse(res, "User not found.", null, httpStatus.NOT_FOUND);
+      return res.status(401).json({ message: "User not found" });
     }
 
-    req.locals = { sessionId, user };
+    req.user = user;
     next();
   } catch (error) {
-    errorResponse(res, "Unauthorized", error.message, httpStatus.UNAUTHORIZED);
+    return res.status(403).json({ message: "Invalid or expired token" });
   }
 };

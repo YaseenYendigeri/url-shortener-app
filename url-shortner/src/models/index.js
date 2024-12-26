@@ -2,7 +2,7 @@ import { Sequelize, DataTypes } from "sequelize";
 import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs/promises";
-import dbConfig from "#src/config/db";
+import dbConfig from "#src/config/dbConfig";
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,

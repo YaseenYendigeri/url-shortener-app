@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 router.get("/google", googleLogin);
-router.get("/google/callback", googleCallback);
+router.get("/google/redirect", googleCallback);
 router.get("/logout", logout);
 
 export default router;

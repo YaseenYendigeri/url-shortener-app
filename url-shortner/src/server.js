@@ -7,6 +7,7 @@ import { logger } from "#src/utils/logger";
 import express from "express";
 import session from "express-session";
 import passport from "#src/config/passport";
+import { SESSION_SECRET, NODE_ENV } from "#src/config/env";
 
 const createServer = async () => {
   const app = express();
@@ -20,7 +21,7 @@ const createServer = async () => {
 
   app.use(
     session({
-      secret: process.env.SESSION_SECRET || "your-secret-key",
+      secret: SESSION_SECRET || "your-secret-key",
       resave: false,
       saveUninitialized: false,
     })
@@ -48,6 +49,6 @@ const startServer = async () => {
 const appPromise = createServer();
 export default appPromise;
 
-if (process.env.NODE_ENV !== "test") {
+if (NODE_ENV !== "test") {
   startServer();
 }
