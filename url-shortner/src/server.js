@@ -16,8 +16,6 @@ const createServer = async () => {
   app.use(getMorganMiddleware());
   app.use(router);
   setupProcessHandlers();
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
 
   app.use(
     session({
