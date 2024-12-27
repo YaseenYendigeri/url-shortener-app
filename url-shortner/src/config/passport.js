@@ -5,7 +5,7 @@ import {
   GOOGLE_CLIENT_SECRET,
   CALLBACK_URL,
 } from "#src/config/env";
-import db from "#src/models/index";
+import { db } from "#src/models/index";
 const User = db.User;
 
 passport.use(

@@ -1,6 +1,6 @@
 import process from "node:process";
 import redis from "redis";
-import REDIS_URI from "#src/config/env.js";
+import { REDIS_URI } from "#src/config/env";
 
 const redisClient = redis.createClient({
   url: REDIS_URI,
@@ -22,4 +22,13 @@ async function initializeRedisClient() {
   return redisClient;
 }
 
-export { initializeRedisClient };
+async function disconnectRedisClient() {
+  if (redisClient.isOpen) {
+    await redisClient.quit();
+    console.log("Redis client disconnected...");
+  } else {
+    console.log("Redis client is not connected");
+  }
+}
+
+export { initializeRedisClient, disconnectRedisClient };

@@ -14,7 +14,7 @@ export default async (sequelize, DataTypes) => {
       },
       ip_address: { type: DataTypes.STRING },
       user_agent: { type: DataTypes.STRING },
-      geo_location: { type: DataTypes.STRING },
+      geo_location: DataTypes.GEOMETRY("POINT"),
       url_id: { type: DataTypes.UUID },
     },
     {

@@ -1,5 +1,5 @@
 import passport from "#src/config/passport";
-import db from "#src/models/index";
+import { db } from "#src/models/index";
 import jwt from "jsonwebtoken";
 import { successResponse, errorResponse } from "#src/utils/response";
 import { StatusCodes } from "http-status-codes";

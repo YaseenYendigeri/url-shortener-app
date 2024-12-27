@@ -3,8 +3,8 @@ dotenv.config();
 
 export const PORT = parseInt(process.env.PORT, 10) || 3000;
 
-//Mongo Credentials
-export const MONGO_URI = process.env.MONGO_URI || "";
+//Redis Credentials
+export const REDIS_URI = process.env.REDIS_URI;
 
 //Others
 export const JWT_SECRET = process.env.JWT_SECRET || "";
@@ -17,8 +17,12 @@ export const DB_USER = process.env.DB_USER;
 export const DB_PASSWORD = process.env.DB_PASSWORD;
 export const DB_NAME = process.env.DB_NAME;
 
-// Google Cloud Console
+//Google Cloud Console
 export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 export const CALLBACK_URL = process.env.CALLBACK_URL;
 export const SESSION_SECRET = process.env.SESSION_SECRET;
+
+//Rate Limit
+export const MAX_REQUESTS = process.env.MAX_REQUESTS;
+export const RATE_LIMIT_WINDOW = process.env.RATE_LIMIT_WINDOW;

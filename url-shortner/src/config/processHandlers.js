@@ -1,9 +1,12 @@
+import { disconnectDb } from "#src/models/index";
 import { logger } from "#src/utils/logger";
+import { disconnectRedisClient } from "#src/config/redis";
 
 export default () => {
   process.on("SIGINT", async () => {
     logger.info("Received SIGINT. Gracefully shutting down...");
-    //await disconnectDb();
+    await disconnectDb();
+    await disconnectRedisClient();
     process.exit(0);
   });
 

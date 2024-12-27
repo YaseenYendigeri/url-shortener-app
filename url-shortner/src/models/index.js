@@ -40,4 +40,13 @@ db.sequelize.sync({ force: false }).then(() => {
   console.log("yes re-sync done!");
 });
 
-export default db;
+async function disconnectDb() {
+  try {
+    await sequelize.close();
+    console.log("Database disconnected....");
+  } catch (error) {
+    console.error("Error while closing the database connection:", error);
+  }
+}
+
+export { db, disconnectDb };
