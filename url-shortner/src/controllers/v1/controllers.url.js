@@ -90,7 +90,7 @@ export const redirectShortUrl = async (req, res) => {
       },
     });
 
-    await redisClient.setEx(`shortUrl:${shortUrl}`, 3600, urlRecord.long_url);
+    await redisClient.setEx(`shortUrl:${alias}`, 3600, url.long_url);
 
     return res.redirect(url.long_url);
   } catch (error) {

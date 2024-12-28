@@ -2,6 +2,8 @@
  * @swagger
  * /api/v1/auth/google:
  *   get:
+ *     tags:
+ *       - Authentication
  *     summary: Initiates Google login authentication
  *     description: Redirects the user to Google OAuth for authentication.
  *     responses:
@@ -15,6 +17,8 @@
  * @swagger
  * /api/v1/auth/google/callback:
  *   get:
+ *     tags:
+ *       - Authentication
  *     summary: Callback after Google authentication
  *     description: Handles the Google OAuth callback and creates a session for the user.
  *     responses:
@@ -55,6 +59,8 @@
  * @swagger
  * /api/v1/auth/logout:
  *   post:
+ *     tags:
+ *       - Authentication
  *     summary: Logs the user out by invalidating the session
  *     description: Logs the user out by invalidating their session and clearing the auth token.
  *     responses:
@@ -72,6 +78,8 @@
  * @swagger
  * /api/v1/url/shorten:
  *   post:
+ *     tags:
+ *       - URL
  *     summary: Shortens a URL and optionally allows custom alias
  *     description: Accepts a long URL and a custom alias (optional) to generate a shortened URL.
  *     requestBody:
@@ -122,6 +130,8 @@
  * @swagger
  * /redirect/{alias}:
  *   get:
+ *     tags:
+ *       - URL
  *     summary: Redirects to the long URL associated with the short URL alias
  *     description: Redirects the user to the original long URL corresponding to the custom alias of the shortened URL.
  *     parameters:
@@ -147,6 +157,8 @@
  * @swagger
  * /api/v1/analytic/{alias}:
  *   get:
+ *     tags:
+ *       - Analytics
  *     summary: Get analytics for a specific shortened URL
  *     description: Fetches total clicks, unique clicks, clicks by date, and user agent data for a specific shortened URL.
  *     parameters:
@@ -195,6 +207,8 @@
  * @swagger
  * /api/v1/analytic/topic/{topic}:
  *   get:
+ *     tags:
+ *       - Analytics
  *     summary: Get analytics for all URLs under a specific topic
  *     description: Fetches total clicks, unique clicks, clicks by date, and individual URL analytics for a specific topic.
  *     parameters:
@@ -249,6 +263,8 @@
  * @swagger
  * /api/v1/analytic/overall:
  *   get:
+ *     tags:
+ *       - Analytics
  *     summary: Get overall analytics for the authenticated user
  *     description: Fetches total URLs, total clicks, unique clicks, clicks by date, and device/OS type analytics for the authenticated user's URLs.
  *     responses:
