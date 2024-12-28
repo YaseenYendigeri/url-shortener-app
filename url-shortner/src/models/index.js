@@ -3,10 +3,12 @@ import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs/promises";
 import dbConfig from "#src/config/dbConfig";
+import pg from "pg";
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   port: dbConfig.PORT,
   dialect: dbConfig.dialect,
+  dialectModule: pg,
   maxConcurrentQueries: 100,
   benchmark: true,
   logging: false,
