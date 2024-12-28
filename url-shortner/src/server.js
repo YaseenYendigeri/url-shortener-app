@@ -8,10 +8,10 @@ import express from "express";
 import session from "express-session";
 import passport from "#src/config/passport";
 import { SESSION_SECRET, NODE_ENV } from "#src/config/env";
+import cors from "cors";
 
 const createServer = async () => {
   const app = express();
-
   configureMiddlewares(app);
   app.use(getMorganMiddleware());
   app.use(router);
@@ -26,6 +26,7 @@ const createServer = async () => {
   );
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(cors());
 
   return app;
 };
