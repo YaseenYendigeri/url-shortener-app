@@ -10,6 +10,7 @@ const configureMiddlewares = (app) => {
   );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.options("*", cors());
 };
 
 export default configureMiddlewares;
