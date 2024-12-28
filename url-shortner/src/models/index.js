@@ -5,6 +5,7 @@ import fs from "fs/promises";
 import dbConfig from "#src/config/dbConfig";
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
+  port: dbConfig.PORT,
   dialect: dbConfig.dialect,
   maxConcurrentQueries: 100,
   benchmark: true,

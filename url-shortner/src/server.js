@@ -33,7 +33,7 @@ const createServer = async () => {
 const startServer = async () => {
   try {
     const app = await createServer();
-    app.listen(PORT, () => {
+    app.listen(PORT || 3000, () => {
       logger.info(`Server started successfully at PORT: ${PORT}`);
     });
     logger.info("Server is running...");
