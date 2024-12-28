@@ -1,4 +1,3 @@
-````markdown
 # URL Shortener App
 
 A scalable URL shortener built with **Node.js**, **PostgreSQL**, **Redis**, and **Docker**. This app allows secure **Google OAuth 2.0 authentication**, **URL shortening**, **redirection**, and **detailed analytics tracking**. It uses **Redis** for caching to optimize performance and provides a simple, monolithic architecture for easy deployment and maintenance.
@@ -37,6 +36,7 @@ Clone this repository to your local machine:
 git clone https://github.com/yourusername/url-shortener-app.git
 cd url-shortener-app
 ```
+
 ````
 
 ### 2. Install Dependencies
@@ -154,3 +154,4 @@ Verify that the **Google Client ID** and **Client Secret** are correctly set up 
 3. Commit your changes (`git commit -am 'Add new feature'`).
 4. Push to the branch (`git push origin feature-branch`).
 5. Open a pull request.
+````
