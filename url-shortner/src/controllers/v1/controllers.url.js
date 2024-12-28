@@ -3,6 +3,7 @@ import { checkRateLimit } from "#src/middlewares/rateLimit";
 import { db } from "#src/models/index";
 import { errorResponse, successResponse } from "#src/utils/response";
 import { StatusCodes } from "http-status-codes";
+import { initializeRedisClient } from "#src/config/redis";
 import axios from "axios";
 const Url = db.Url;
 const Analytic = db.Analytic;
@@ -57,7 +58,7 @@ export const redirectShortUrl = async (req, res) => {
   try {
     const redisClient = await initializeRedisClient();
 
-    const cachedLongUrl = await redisClient.get(`shortUrl:${shortUrl}`);
+    const cachedLongUrl = await redisClient.get(`shortUrl:${alias}`);
     if (cachedLongUrl) {
       return res.redirect(cachedLongUrl);
     }
@@ -89,7 +90,7 @@ export const redirectShortUrl = async (req, res) => {
       },
     });
 
-    await redisClient.setEx(`shortUrl:${shortUrl}`, 3600, urlRecord.long_url);
+    await redisClient.setEx(`shortUrl:${alias}`, 3600, url.long_url);
 
     return res.redirect(url.long_url);
   } catch (error) {
