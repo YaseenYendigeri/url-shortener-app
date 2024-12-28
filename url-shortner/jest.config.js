@@ -7,4 +7,5 @@ export default {
     "/node_modules/(?!your-esm-dependency-to-transform)/",
   ],
   testTimeout: 10000000,
+  testEnvironment: "node",
 };
