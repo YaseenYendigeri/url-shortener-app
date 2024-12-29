@@ -3,10 +3,10 @@ import {
   getTopicAnalytics,
   getOverallAnalytics,
 } from "#src/controllers/v1/controllers.analytic";
-import { Url, Analytic } from "#src/models";
+import { db } from "#src/models/index";
 import { fetchCachedAnalytics } from "#src/utils/analytic";
 import { successResponse, errorResponse } from "#src/utils/response";
-
+const { Url, Analytic } = db;
 jest.mock("#src/models");
 jest.mock("#src/utils/analytic");
 jest.mock("#src/utils/response");

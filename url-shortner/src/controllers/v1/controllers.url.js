@@ -84,10 +84,7 @@ export const redirectShortUrl = async (req, res) => {
       url_id: url.id,
       user_agent: userAgent,
       ip_address: ipAddress,
-      geo_location: {
-        type: "Point",
-        coordinates: geolocation,
-      },
+      geo_location: JSON.stringify(geolocation),
     });
 
     await redisClient.setEx(`shortUrl:${alias}`, 3600, url.long_url);
