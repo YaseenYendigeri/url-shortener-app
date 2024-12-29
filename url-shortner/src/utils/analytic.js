@@ -1,3 +1,6 @@
+import { db } from "#src/models/index";
+const { Analytic } = db;
+
 export const getRecentDates = (days = 7) => {
   return [...Array(days).keys()].map((i) => {
     const date = new Date();
