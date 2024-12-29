@@ -3,10 +3,13 @@ import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs/promises";
 import dbConfig from "#src/config/dbConfig";
+import pg from "pg";
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   port: dbConfig.PORT,
   dialect: dbConfig.dialect,
+  dialectModule: pg,
   maxConcurrentQueries: 100,
   benchmark: true,
   logging: false,
@@ -20,8 +23,10 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 
 const db = {};
 const excludedFiles = [".", "..", "index.js"];
-let files = await fs.readdir("./src/models");
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const modelsDir = path.resolve(__dirname, "./");
+let files = await fs.readdir(modelsDir);
 for (let fileName of files) {
   if (!excludedFiles.includes(fileName) && path.extname(fileName) === ".js") {
     const getModel = await import("./" + fileName);
