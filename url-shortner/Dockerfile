@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["nodemon", "src/server.js"] my dockerfile give compose yml file 
+CMD ["node", "src/server.js"] my dockerfile give compose yml file 
