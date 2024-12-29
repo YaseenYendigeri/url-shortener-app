@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { db } from "#src/models/index";
 const { Analytic } = db;
 
