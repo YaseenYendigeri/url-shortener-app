@@ -10,6 +10,7 @@ export const REDIS_URI = process.env.REDIS_URI;
 export const JWT_SECRET = process.env.JWT_SECRET || "";
 export const EMAIL = process.env.EMAIL;
 export const NODE_ENV = process.env.NODE_ENV;
+export const SERVER_URL = process.env.SERVER_URL;
 
 //Database
 export const DB_HOST = process.env.DB_HOST;
