@@ -1,5 +1,6 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import { SERVER_URL } from "#src/config/env";
 
 const swaggerOptions = {
   definition: {
@@ -11,7 +12,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: SERVER_URL,
       },
     ],
   },
